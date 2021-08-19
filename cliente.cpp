@@ -38,10 +38,7 @@ void Cliente::carregaCliente(QString nome, QString sobrenome)
         this->id = query.value(0).toInt();
         this->nome = query.value(1).toString();
         this->sobrenome = query.value(2).toString();
-        qInfo() << id << nome << sobrenome;
-
     }
 
     db.close();
-    qInfo() << "Disconnected";
 }

@@ -218,13 +218,11 @@ void janelaCheckout::carregaEnderecos()
             complemento = query.value(4).toString();
             cidade = query.value(5).toString();
             estado = query.value(6).toInt();
-            qInfo() << id << cep << rua << numero << complemento << cidade << estado;
             this->enderecos.append(Endereco(cep, rua, numero, complemento, cidade, estado));
         }
     }
 
     db.close();
-    qInfo() << "Disconnected";
 }
 
 void janelaCheckout::carregaTransportadora()
@@ -262,13 +260,11 @@ void janelaCheckout::carregaTransportadora()
             nome = query.value(1).toString();
             prazo = query.value(2).toInt();
             valor = query.value(3).toDouble();
-            qInfo() << id << nome << prazo << valor;
             this->transportadoras.append(Transportadora(id, nome, prazo, valor));
         }
     }
 
     db.close();
-    qInfo() << "Disconnected";
 }
 
 void janelaCheckout::carregaTipoPagamentos()
@@ -304,13 +300,11 @@ void janelaCheckout::carregaTipoPagamentos()
             id = query.value(0).toInt();
             nome = query.value(1).toString();
             parcelas = query.value(2).toInt();
-            qInfo() << id << nome << parcelas;
             this->tipoPagamentos.append(TipoPagamento(id, nome, parcelas));
         }
     }
 
     db.close();
-    qInfo() << "Disconnected";
 }
 
 void janelaCheckout::freteChanged(int index)

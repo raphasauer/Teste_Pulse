@@ -43,12 +43,8 @@ void Pagamento::confirmarPagamento()
         qInfo() << db.lastError().text();
         qInfo() << query.lastError().text();
     }
-    else
-    {
-        qInfo() << "Operation successful";
-    }
+
 
     db.close();
-    qInfo() << "Disconnected";
 }
 

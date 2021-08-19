@@ -108,14 +108,12 @@ void janelaInicial::carregaProdutos()
             preco = query.value(1).toDouble();
             nome = query.value(2).toString();
             descricao = query.value(3).toString();
-            qInfo() << id << preco << nome << descricao;
             this->produtos.append(Produto(id, preco, nome, descricao));
 
         }
     }
 
     db.close();
-    qInfo() << "Disconnected";
 
 }
 
