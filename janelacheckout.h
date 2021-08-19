@@ -49,6 +49,8 @@ class janelaCheckout : public QMainWindow
      */
     QWidget *widgetProdutos(QWidget *parent);
 
+
+
 public:
 
     /**
@@ -78,16 +80,29 @@ protected:
     QList<Transportadora> transportadoras; //Lista com as transportadoras carregadas
     QList<TipoPagamento> tipoPagamentos; //Lista com os tipos de pagamento carregados
     QList<Produto> listaProdutos; //Lista com os produtos do carrinho
+    QLabel *precoTotal; //Label do preço total
 
-    Pagamento *pag;
+    Pagamento *pag; //Ponteiro para o pagamentp
 
-    double frete;
-    int metodoPagamento;
-    double tot;
+    double frete; //Frete utilizado
+
+    double tot; //Valor total do carrinho
 
 signals:
+
+    /**
+     * @brief checkoutFinalizado enviado quando o checkout é finalizado
+     */
+    void checkoutFinalizado();
 public slots:
     void sucesso();
+
+    /**
+     * @brief freteChanged Recebe quando frete foi mudado
+     * @param index índice escolhido na combobox
+     */
+    void freteChanged(int index);
+
 
 };
 

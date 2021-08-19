@@ -10,17 +10,15 @@ public:
      * @param Valor
      * @param Desconto
      */
-    Pagamento(float Valor, int TipoPagamento, float Desconto);
+    Pagamento(float Valor, float Desconto);
 
     /**
      * @brief confirmarPagamento registra a transação no DB
      */
     void confirmarPagamento();
 
-    int rastreio;
+    int rastreio; //Código de rastreio
 
-protected:
-    int tipoPagamento; //Tipo de pagamento
     float valor; //Valor total do carrinho
     float desconto; //Porcentagem de desconto aplicado ao valor total
 };

@@ -23,13 +23,13 @@ class janelaInicial : public QMainWindow
     int carrinho; //Número de itens no carrinho
 
     /**
-     * @brief widgetCarrinho
-     * @param parent
+     * @brief widgetCarrinho widget onde aparece o carrinho
+     * @param parent widget pai
      * @return
      */
     QWidget *widgetCarrinho(QWidget *parent);
 
-    QLabel *contador;
+    QLabel *contador; //Label de contador utilizada
 public:
 
     /**
@@ -60,6 +60,11 @@ public slots:
      */
     void proximaTela();
 
+
+    /**
+     * @brief checkoutFeito recebe um sinal de que o checkout foi feito. Limpa o carrinho
+     */
+    void checkoutFeito();
 };
 
 #endif // JANELAINICIAL_H

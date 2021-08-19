@@ -4,32 +4,23 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 
-Pagamento::Pagamento(float Valor, int TipoPagamento, float Desconto)
+Pagamento::Pagamento(float Valor, float Desconto)
 {
     this->valor = Valor;
-    this->tipoPagamento = TipoPagamento;
     this->desconto = Desconto;
     this->rastreio = 0;
 }
 
 void Pagamento::confirmarPagamento()
 {
-    /*int idCompra = QRandomGenerator::global()->generate();
-    int formaPg = this->tipoPagamento;
-    double valor = this->valor;
-    double desconto = 0.0;*/
-
     int idCompra = QRandomGenerator::global()->generate();
-
+    double valor = this->valor;
+    double desconto = 0.0;
 
     if(idCompra < 0)
         idCompra = -1*idCompra;
 
     this->rastreio = idCompra;
-
-    int formaPg = 1;
-    double valor = 99.9;
-    double desconto = 0.0;
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("C:/sqlite/TestePulse.db");
@@ -43,8 +34,8 @@ void Pagamento::confirmarPagamento()
     }
 
     QSqlQuery query;
-    QString cmd = "INSERT INTO pagamento(ID, FORMAPAGAMENTO, VALOR, DESCONTO) VALUES("
-    + QString::number(idCompra) + "," +  QString::number(formaPg) + "," + QString::number(valor)
+    QString cmd = "INSERT INTO pagamento(ID, VALOR, DESCONTO) VALUES("
+    + QString::number(idCompra) + "," + QString::number(valor)
             + "," + QString::number(desconto) + ");";
 
     if(!query.exec(cmd))

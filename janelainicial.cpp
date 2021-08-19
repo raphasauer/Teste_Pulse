@@ -25,6 +25,11 @@ janelaInicial::janelaInicial(QWidget *parent) : QMainWindow(parent)
 
     QPushButton *proxTela = new QPushButton("Checkout", this);
 
+    proxTela->setStyleSheet("QPushButton{background-color: rgb(118, 50, 63); border: none; border-radius: 25px;"
+"color:rgb(215, 206, 199); height: 50px;}"
+"QPushButton::hover{background-color: rgb(124, 59, 71);}"
+"QPushButton:pressed{background-color: rgb(78, 41, 48);}");
+
     connect(proxTela, SIGNAL(clicked(bool)), this, SLOT(proximaTela()));
 
     layout->addWidget(proxTela);
@@ -116,7 +121,20 @@ void janelaInicial::carregaProdutos()
 
 void janelaInicial::proximaTela()
 {
-    janelaCheckout *j = new janelaCheckout(this->checkout, this);
-    j->show();
-    //this->close();
+    if(carrinho > 0)
+    {
+        janelaCheckout *j = new janelaCheckout(this->checkout, this);
+        j->show();
+        //this->close();
+    }
+    else
+        QMessageBox::warning(this, "Erro!", "O carrinho está vazio");
+
+}
+
+void janelaInicial::checkoutFeito()
+{
+    carrinho = 0;
+    checkout.clear();
+    contador->setText("0");
 }

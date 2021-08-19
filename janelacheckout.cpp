@@ -15,6 +15,8 @@ janelaCheckout::janelaCheckout(QList<Produto> lista, QWidget *parent) : QMainWin
     QScreen *q = QGuiApplication::primaryScreen();
     resize(q->availableSize());
 
+    connect(this, SIGNAL(checkoutFinalizado()), parent, SLOT(checkoutFeito()));
+
     QWidget *centralWidget = new QWidget(this);
     QVBoxLayout *layout = new QVBoxLayout(centralWidget);
     layout->setContentsMargins(75, 75, 75, 75);
@@ -23,6 +25,8 @@ janelaCheckout::janelaCheckout(QList<Produto> lista, QWidget *parent) : QMainWin
     scroll->setFrameShape(QFrame::NoFrame);
     QWidget *widgetScroll = new QWidget(centralWidget);
     QFormLayout *layoutScroll = new QFormLayout(widgetScroll);
+
+    layoutScroll->setVerticalSpacing(50);
 
     // flarts entrega
 
@@ -43,7 +47,12 @@ janelaCheckout::janelaCheckout(QList<Produto> lista, QWidget *parent) : QMainWin
 
     layoutScroll->addRow("4. Produtos", widgetProdutos(widgetScroll));
 
-    QPushButton *botao = new QPushButton("FINALIZAR COMPRA", centralWidget);
+    QPushButton *botao = new QPushButton("Finalizar compra", centralWidget);
+    botao->setStyleSheet("QPushButton{background-color: rgb(118, 50, 63); border: none; border-radius: 25px;"
+"color:rgb(215, 206, 199); height: 50px;}"
+"QPushButton::hover{background-color: rgb(124, 59, 71);}"
+"QPushButton:pressed{background-color: rgb(78, 41, 48);}");
+
     connect(botao, SIGNAL(clicked(bool)), this, SLOT(sucesso()));
 
 
@@ -56,43 +65,55 @@ janelaCheckout::janelaCheckout(QList<Produto> lista, QWidget *parent) : QMainWin
 
 void janelaCheckout::sucesso()
 {
-    this->pag = new Pagamento(99.9, 2, 0.0);
+    this->pag = new Pagamento(tot + frete, 0.0);
     pag->confirmarPagamento();
-    QMessageBox::information(this, "Sucesso!", "Compra efetuada com sucesso! Seu código de rastreio é: " + QString::number(pag->rastreio));
+    int retornoBox = QMessageBox::information(this, "Sucesso!", "Compra efetuada com sucesso! Seu código de rastreio é: " + QString::number(pag->rastreio));
+    if(retornoBox == QMessageBox::Ok)
+    {
+        emit checkoutFinalizado();
+        this->close();
+    }
 }
 
 QWidget *janelaCheckout::widgetEndereco(QWidget *parent)
 {
     QWidget *widget = new QWidget(parent);
     QVBoxLayout *layout = new QVBoxLayout(widget);
-
     QString end;
 
     for(int i = 0; i < 2; i++)
     {
         end = enderecos[i].rua + " " + QString::number(enderecos[i].numero) + " " + enderecos[i].complemento + " " + enderecos[i].cep;
         QRadioButton *b = new QRadioButton(end, widget);
+        if(i == 0)
+            b->setChecked(true);
         layout->addWidget(b);
     }
 
     return widget;
 }
 
+
 QWidget *janelaCheckout::widgetFrete(QWidget *parent)
 {
     QWidget *widget = new QWidget(parent);
+
     QGridLayout *layout = new QGridLayout(widget);
 
-    QString transp;
+    QComboBox *box = new QComboBox(widget);
+    box->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 
-    for(int i = 0; i < 3; i++)
+    frete = transportadoras[0].valor;
+
+    for(int i = 0; i < transportadoras.size(); i++)
     {
-        transp = transportadoras[i].nome + " " + QString::number(transportadoras[i].prazo) + " dias úteis";
-        QRadioButton *btn = new QRadioButton(transp, widget);
-        //connect(btn, SIGNAL(clicked()), this, SLOT(freteMudou));
-        layout->addWidget(btn, i, 0);
-        layout->addWidget(new QLabel("R$ " + QString::number(transportadoras[i].valor), widget), i, 1);
+        QString transp;
+        transp = transportadoras[i].nome + " " + QString::number(transportadoras[i].prazo) + " dias úteis " + "R$ " + QString::number(transportadoras[i].valor);
+        box->addItem(transp);
     }
+
+    connect(box, SIGNAL(currentIndexChanged(int)), this, SLOT(freteChanged(int)));
+
 
     return widget;
 }
@@ -102,16 +123,21 @@ QWidget *janelaCheckout::widgetPagamento(QWidget *parent)
     QWidget *widget = new QWidget(parent);
     QGridLayout *layout = new QGridLayout(widget);
 
+
+
     QString pag;
 
     for(int i = 0; i < 4; i++)
     {
         pag = tipoPagamentos[i].nome;
-        layout->addWidget(new QRadioButton(pag, widget), i, 0);
+        QRadioButton *btn = new QRadioButton(pag, widget);
+        btn->setChecked(true);
+        layout->addWidget(btn, i, 0);
         QComboBox *box = new QComboBox(widget);
 
         if(pag == "Cartao_Credito")
         {
+
             for(int j = 1; j < 4; j++)
             {
                 QString s;
@@ -145,10 +171,10 @@ QWidget *janelaCheckout::widgetProdutos(QWidget *parent)
         tot += listaProdutos[i].preco;
     }
 
-    layout->addWidget(new QLabel("Total: R$ " + QString::number(tot), widget), i, 2);
+    precoTotal = new QLabel("Total: R$ " + QString::number(tot + frete), widget);
+    layout->addWidget(precoTotal, i, 2);
 
     return widget;
-
 }
 
 void janelaCheckout::carregaEnderecos()
@@ -287,6 +313,11 @@ void janelaCheckout::carregaTipoPagamentos()
     qInfo() << "Disconnected";
 }
 
+void janelaCheckout::freteChanged(int index)
+{
+    frete = transportadoras[index].valor;
+    precoTotal->setText("Total: R$ " + QString::number(tot + frete));
+}
 
 
 
