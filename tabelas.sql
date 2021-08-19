@@ -22,8 +22,6 @@ VALUES (1, 'Boleto', 1);
 VALUES (2, 'PIX', 1);
 VALUES (3, 'Cartao_Debito', 1);
 VALUES (4, 'Cartao_Credito', 1);
-VALUES (5, 'Cartao_Credito', 2);
-VALUES (6, 'Cartao_Credito', 3);
 
 CREATE TABLE produto(
     ID SERIAL PRIMARY KEY,
