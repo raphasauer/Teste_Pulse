@@ -9,6 +9,7 @@ Pagamento::Pagamento(float Valor, int TipoPagamento, float Desconto)
     this->valor = Valor;
     this->tipoPagamento = TipoPagamento;
     this->desconto = Desconto;
+    this->rastreio = 0;
 }
 
 void Pagamento::confirmarPagamento()
@@ -20,8 +21,11 @@ void Pagamento::confirmarPagamento()
 
     int idCompra = QRandomGenerator::global()->generate();
 
+
     if(idCompra < 0)
         idCompra = -1*idCompra;
+
+    this->rastreio = idCompra;
 
     int formaPg = 1;
     double valor = 99.9;

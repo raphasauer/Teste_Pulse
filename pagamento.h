@@ -17,6 +17,8 @@ public:
      */
     void confirmarPagamento();
 
+    int rastreio;
+
 protected:
     int tipoPagamento; //Tipo de pagamento
     float valor; //Valor total do carrinho

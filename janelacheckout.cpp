@@ -56,7 +56,9 @@ janelaCheckout::janelaCheckout(QList<Produto> lista, QWidget *parent) : QMainWin
 
 void janelaCheckout::sucesso()
 {
-    QMessageBox::information(this, "SUCESSO", "COMPRA EFETUADA COM SUCESSO CODIGO DE RASTREIO: ");
+    this->pag = new Pagamento(99.9, 2, 0.0);
+    pag->confirmarPagamento();
+    QMessageBox::information(this, "Sucesso!", "Compra efetuada com sucesso! Seu código de rastreio é: " + QString::number(pag->rastreio));
 }
 
 QWidget *janelaCheckout::widgetEndereco(QWidget *parent)
@@ -134,12 +136,16 @@ QWidget *janelaCheckout::widgetProdutos(QWidget *parent)
     QWidget *widget = new QWidget(parent);
     QGridLayout *layout = new QGridLayout(widget);
 
-    for(int i = 0; i < this->listaProdutos.size(); i++)
+    int i = 0;
+
+    for(; i < this->listaProdutos.size(); i++)
     {
         layout->addWidget(new QLabel(listaProdutos[i].nome, widget), i, 0);
         layout->addWidget(new QLabel("R$ " + QString::number(listaProdutos[i].preco), widget), i, 1);
         tot += listaProdutos[i].preco;
     }
+
+    layout->addWidget(new QLabel("Total: R$ " + QString::number(tot), widget), i, 2);
 
     return widget;
 

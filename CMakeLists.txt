@@ -29,9 +29,6 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Sql REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
         cliente.cpp
         cliente.h
         endereco.cpp
@@ -48,12 +45,6 @@ set(PROJECT_SOURCES
         janelacheckout.h
         janelainicial.cpp
         janelainicial.h
-        end_frete.cpp
-        end_frete.h
-        end_frete.ui
-        sel_pagamento.cpp
-        sel_pagamento.h
-        sel_pagamento.ui
         widgetproduto.cpp
         widgetproduto.h
 )

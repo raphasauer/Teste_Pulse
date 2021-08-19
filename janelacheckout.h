@@ -16,36 +16,71 @@
 #include <transportadora.h>
 #include <tipopagamento.h>
 #include <produto.h>
+#include <pagamento.h>
 
 class janelaCheckout : public QMainWindow
 {
     Q_OBJECT
+    /**
+     * @brief widgetEndereco widgets para os endereços
+     * @param parent widget pai
+     * @return
+     */
     QWidget *widgetEndereco(QWidget *parent);
+
+    /**
+     * @brief widgetFrete widgets para os fretes disponíveis
+     * @param parent widget pai
+     * @return
+     */
     QWidget *widgetFrete(QWidget *parent);
+
+    /**
+     * @brief widgetPagamento widgets para os tipos de pagamentos
+     * @param parent widget pai
+     * @return
+     */
     QWidget *widgetPagamento(QWidget *parent);
+
+    /**
+     * @brief widgetProdutos widgets para os produtos do carrinho
+     * @param parent widget pai
+     * @return
+     */
     QWidget *widgetProdutos(QWidget *parent);
+
 public:
+
+    /**
+     * @brief janelaCheckout janela com informações do checkout
+     * @param lista lista de produtos do carrinho
+     * @param parent widget pai
+     */
     explicit janelaCheckout( QList<Produto> lista, QWidget *parent = nullptr);
 
 protected:
     /**
-     * @brief carregaEndereco
+     * @brief carregaEndereco carrega os endereços presentes no banco de dados
      */
     void carregaEnderecos();
+
     /**
-     * @brief carregaTransportadora
+     * @brief carregaTransportadora carrega as transportadoras armazenadas no banco de dados
      */
     void carregaTransportadora();
 
     /**
-     * @brief carregaTipoPagamentos
+     * @brief carregaTipoPagamentos carregam os tipos de pagamento presentes no banco de dados
      */
     void carregaTipoPagamentos();
 
-    QList<Endereco> enderecos;
-    QList<Transportadora> transportadoras;
-    QList<TipoPagamento> tipoPagamentos;
-    QList<Produto> listaProdutos;
+    QList<Endereco> enderecos; //Lista com os endereços carregados
+    QList<Transportadora> transportadoras; //Lista com as transportadoras carregadas
+    QList<TipoPagamento> tipoPagamentos; //Lista com os tipos de pagamento carregados
+    QList<Produto> listaProdutos; //Lista com os produtos do carrinho
+
+    Pagamento *pag;
+
     double frete;
     int metodoPagamento;
     double tot;

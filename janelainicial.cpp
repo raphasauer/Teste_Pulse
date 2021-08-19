@@ -54,10 +54,7 @@ janelaInicial::janelaInicial(QWidget *parent) : QMainWindow(parent)
     setCentralWidget(centralWidget);
 }
 
-void janelaInicial::teste(QString s)
-{
-    qInfo() << s;
-}
+
 
 void janelaInicial::receiver(Produto *p)
 {

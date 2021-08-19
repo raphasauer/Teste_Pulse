@@ -20,22 +20,44 @@
 class janelaInicial : public QMainWindow
 {
     Q_OBJECT
-    int carrinho;
+    int carrinho; //Número de itens no carrinho
+
+    /**
+     * @brief widgetCarrinho
+     * @param parent
+     * @return
+     */
     QWidget *widgetCarrinho(QWidget *parent);
+
     QLabel *contador;
 public:
+
+    /**
+     * @brief janelaInicial
+     * @param parent
+     */
     explicit janelaInicial(QWidget *parent = nullptr);
+
     /**
      * @brief carregaProdutos carrega produtos do DB
      */
     void carregaProdutos();
-    QList<Produto> produtos;
-    QList<Produto> checkout;
+
+    QList<Produto> produtos; //Produtos carregados do DB
+    QList<Produto> checkout; //Produtos no carrinho
 
 signals:
 public slots:
-    void teste(QString s);
-    void receiver(Produto *p); // recebe o produto
+
+    /**
+     * @brief receiver Recebe um produto para adicionar no carrinho
+     * @param p produto
+     */
+    void receiver(Produto *p);
+
+    /**
+     * @brief proximaTela carrega próxima tela
+     */
     void proximaTela();
 
 };

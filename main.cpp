@@ -7,8 +7,6 @@
 #include <QVariant>
 #include <QApplication>
 #include "janelainicial.h"
-#include <end_frete.h>
-#include <sel_pagamento.h>
 #include <cliente.h>
 
 

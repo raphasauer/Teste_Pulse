@@ -13,15 +13,31 @@ class widgetProduto : public QWidget
 {
     Q_OBJECT
 public:
+
+    /**
+     * @brief widgetProduto carrega um produto em forma de widget
+     * @param parent widget pai
+     * @param p produto carregado
+     */
     explicit widgetProduto(QWidget *parent, Produto p);
     void paintEvent(QPaintEvent *event);
 
 private:
-    Produto *prod = nullptr;
+    Produto *prod = nullptr; //Ponteiro para um produto
 
 signals:
-    void sender(Produto *p); // trocar inteiro por produto
+
+    /**
+     * @brief sender envia um sinal do produto para colocar no carrinho
+     * @param p produto
+     */
+    void sender(Produto *p);
+
 public slots:
+
+    /**
+     * @brief send recebe um sinal para colocar o produto no carrinho
+     */
     void send();
 
 };

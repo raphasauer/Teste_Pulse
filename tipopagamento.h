@@ -12,12 +12,17 @@ enum FormaPagamento{
 class TipoPagamento
 {
 public:
+
+    /**
+     * @brief TipoPagamento contrutor TipoPagamento
+     * @param fp forma de pagamento
+     * @param nome
+     * @param parcel pareclas
+     */
     TipoPagamento(int fp, QString nome, int parcel);
     FormaPagamento formaPagamento; //Forma de pagamento
     QString nome; //Nome da forma de pagamento
     int parcelas; //Quantas parcelas caso pagamento não seja a vista
-protected:
-
 };
 
 #endif // TIPOPAGAMENTO_H
