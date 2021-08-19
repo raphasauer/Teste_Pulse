@@ -45,7 +45,6 @@ VALUES (6, 5490.90,'Smart TV', 'TV 4K de 40 polegadas da Sungsamg');
 
 CREATE TABLE pagamento(
     ID SERIAL PRIMARY KEY,
-    FORMAPAGAMENTO INT NOT NULL,
     VALOR FLOAT NOT NULL,
     DESCONTO FLOAT
 );
