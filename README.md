@@ -6,12 +6,11 @@ O programa inicia com uma tela que possui produtos carregados a partir de um ban
 
 ## Capturas de tela
 
-![image](https://user-images.githubusercontent.com/24641708/130147525-ec450964-c652-4060-8e7e-d21b0cdd9202.png)
+![image](https://user-images.githubusercontent.com/24641708/130147770-ec11b76e-df9d-4918-aa02-102241c0525d.png)
 
-![image](https://user-images.githubusercontent.com/24641708/130147551-499ca6b4-aebe-449a-9b7d-ac6c24fc817b.png)
+![image](https://user-images.githubusercontent.com/24641708/130147810-f6b784e0-b512-40e2-a8ff-13a36b621f6e.png)
 
-![image](https://user-images.githubusercontent.com/24641708/130147583-86548884-feeb-4e40-9fcb-2e6a2360a035.png)
+![image](https://user-images.githubusercontent.com/24641708/130147880-f401d5a2-1f27-454e-8fd1-a1a25e25b992.png)
 
-![image](https://user-images.githubusercontent.com/24641708/130147603-2d96fed4-6979-4348-a24c-34394ed42718.png)
-
+![image](https://user-images.githubusercontent.com/24641708/130147915-8a6a38a8-35f1-40de-aa79-ad8cc3424cf8.png)
 
