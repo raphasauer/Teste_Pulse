@@ -17,4 +17,6 @@ O programa inicia com uma tela que possui produtos carregados a partir de um ban
 ## Bugs conhecidos
 A ComBox de seleção de frete, na minha máquina, aparece cortada (estou usando o Windows). No Linux, não tive esse problema. 
 
-Gostaria de agradecer à Pulse pela oportunidade de realizar esse teste, bem como pelo aumento do prazo de entrega (de cinco a sete dias).
+## Agradecimentos
+
+Gostaria de agradecer à Pulse pela oportunidade de realizar esse teste, bem como pelo aumento do prazo de entrega (de cinco a sete dias). Também gostaria de agradecer ao Sandro da QMob pelas dicas fornecidas. 
