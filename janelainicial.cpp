@@ -76,7 +76,7 @@ void janelaInicial::carregaProdutos()
 {
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("C:/Users/rapha/Qt/Teste-Pulse/TestePulse.db");
+    db.setDatabaseName("C:/sqlite/TestePulse.db");
 
 
     if(!db.open())

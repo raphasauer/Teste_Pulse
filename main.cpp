@@ -16,9 +16,5 @@ int main(int argc, char *argv[])
     Cliente *cl = new Cliente("Raphael", "Sauer");
     janelaInicial j;
     j.show();
-    //endFrete j;
-    //j.show();
-    //selPagamento j;
-    //j.show();
     return app.exec();
 }
